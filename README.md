@@ -1,6 +1,6 @@
 # Lumen PHP Framework
 
-Projeto feito utilizando o Webservice Lumen para emissão de Nota fiscal de serviço eletrônica no padrão Abrasf.
+Projeto feito utilizando o Micro-Framework Lumen para emissão de Nota fiscal de serviço eletrônica no padrão Abrasf.
 
 Cidades suportadas : Indaiatuba, porém código pode ser facilmente alterado para atender outras cidades no mesmo padrão.
 
