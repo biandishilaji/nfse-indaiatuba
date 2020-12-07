@@ -1,0 +1,68 @@
+<GerarNfseEnvio xmlns="http://www.abrasf.org.br/nfse.xsd">
+    <Rps>
+        <InfDeclaracaoPrestacaoServico Id="1">
+            <Rps Id="2">
+                <IdentificacaoRps>
+                    <Numero>7</Numero>
+                    <Serie>00000</Serie>
+                    <Tipo>1</Tipo>
+                </IdentificacaoRps>
+                <DataEmissao>2016-11-24</DataEmissao>
+                <Status>1</Status>
+            </Rps>
+            <Competencia>2016-11-24</Competencia>
+            <Servico>
+                <Valores>
+                    <ValorServicos>2047.36</ValorServicos>
+                    <ValorDeducoes>0.00</ValorDeducoes>
+                    <ValorPis>0.00</ValorPis>
+                    <ValorCofins>61.42</ValorCofins>
+                    <ValorInss>0.00</ValorInss>
+                    <ValorIr>30.71</ValorIr>
+                    <ValorCsll>20.47</ValorCsll>
+                    <OutrasRetencoes>0.00</OutrasRetencoes>
+                    <ValTotTributos>112.60</ValTotTributos>
+                    <DescontoIncondicionado>0.00</DescontoIncondicionado>
+                    <DescontoCondicionado>0.00</DescontoCondicionado>
+                </Valores>
+                <IssRetido>2</IssRetido>
+                <ItemListaServico>01.01</ItemListaServico>
+                <Discriminacao>CONTABILIZAÇÃO, INCLUSIVE SERVICOS TECNICOS
+                    AUXILIARES.</Discriminacao>
+                <CodigoMunicipio>3520509</CodigoMunicipio>
+                <ExigibilidadeISS>1</ExigibilidadeISS>
+                <MunicipioIncidencia>3520509</MunicipioIncidencia>
+            </Servico>
+            <Prestador>
+                <CpfCnpj>
+                    <Cnpj>06014576000194</Cnpj>
+                </CpfCnpj>
+                <InscricaoMunicipal>1432261</InscricaoMunicipal>
+            </Prestador>
+            <Tomador>
+                <IdentificacaoTomador>
+                    <CpfCnpj>
+                        <Cnpj>06024576000194</Cnpj>
+                    </CpfCnpj>
+                    <InscricaoMunicipal>1445631</InscricaoMunicipal>
+                </IdentificacaoTomador>
+                <RazaoSocial>SS METALURGICA LTDA.</RazaoSocial>
+                <Endereco>
+                    <Endereco>RUA MARTINS</Endereco>
+                    <Numero>679</Numero>
+                    <Bairro>JOAO NAREZZI</Bairro>
+                    <CodigoMunicipio>3520509</CodigoMunicipio>
+                    <Uf>SP</Uf>
+                    <CodigoPais>1058</CodigoPais>
+                    <Cep>13366404</Cep>
+                </Endereco>
+                <Contato>
+                    <Telefone>1932266787</Telefone>
+                    <Email>tec@tec.com.br</Email>
+                </Contato>
+            </Tomador>
+            <OptanteSimplesNacional>2</OptanteSimplesNacional>
+            <IncentivoFiscal>2</IncentivoFiscal>
+        </InfDeclaracaoPrestacaoServico>
+    <Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/><Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>604FNrBmZrXeforzzwnCm1TIxlk=</DigestValue></Reference></SignedInfo><SignatureValue>W4jDL25avECCQPIfh0cKsgFkAV1DH3mkDeZITC0gfcwXisII/Hp0QDJgpx2WU1Dcms5QprIs+iUIqVAM0NdX8tncO4LpIMWj7Eivk8RJohiP6O79CpNzx4ncwdWnuUCtLmFCicMsDUEjwcoslOdWfWyXjPIYZm5kaZIId8x+LtYWbGpX9fEsyFFGLTUTs05R5oxoet33XjrcaaiTU3RnDBHKI9XRyDx7p1J+xqn5DlOnp52rU5nCNUuJSJv70D8TIwgyd9T9td+FqwmSRqs3aUrVOfEbAOXoY/3y69Zd8zo2Pv/d68ze05/A4c9K4YTR8bSYibzwRP7Dfw5/DnIETA==</SignatureValue><KeyInfo><X509Data><X509Certificate>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</X509Certificate></X509Data></KeyInfo></Signature></Rps>
+</GerarNfseEnvio>

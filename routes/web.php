@@ -16,3 +16,15 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('/',  function(){
+        return 'Hello World!';
+    });
+    $router->group(['prefix' => 'testes'], function () use ($router) {
+        $router->post('soap', ['uses' => 'TestesController@Soap']);
+        $router->post('/generate/nfse', ['uses' => 'TestesController@generateNFSe']);
+    });
+
+});
