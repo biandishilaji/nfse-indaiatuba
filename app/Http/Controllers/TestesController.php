@@ -41,7 +41,9 @@ class TestesController extends ApiController
         try {
 
 
-//            soap puro não utilizavel
+//            soap puro ainda em testes
+            
+//            para testes com o Soap, utilize $soapClient->GerarNfseEnvio
 
             $urlWsdl = 'https://deiss.indaiatuba.sp.gov.br/homologacao/nfse?wsdl';
 
