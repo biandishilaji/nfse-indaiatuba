@@ -51,12 +51,13 @@ class TestesController extends ApiController
                 'exceptions' => true
             ]);
 
-            $requestData = [ 'country' => 'brazil' ];
+            $request = file_get_contents(storage_path().'/teste2.xml');
 
-            $response = $soapClient->GetAirportInformationByCountry($requestData);
+            $response = $soapClient->GerarNfseEnvio($request);
 
-
-
+           // if(!$response)
+           //  throw new \Exception();
+               
         }catch (\Exception $e){
             echo $e->getMessage();
         }
