@@ -44,8 +44,8 @@ class Abrasf
 
         $SoapCurl = new SoapCurl($this->Certificate);
 
-        $XmlAssinado = htmlentities(file_get_contents(storage_path() . '/teste.xml'));
-        $cabecalho = htmlentities('<cabecalho versao="2.01" xmlns="http://www.abrasf.org.br/nfse.xsd" ><versaoDados>2.01</versaoDados></cabecalho>');
+        $XmlAssinado = file_get_contents(storage_path() . '/teste.xml');
+        $cabecalho = '<cabecalho versao="2.01" xmlns="http://www.abrasf.org.br/nfse.xsd" ><versaoDados>2.01</versaoDados></cabecalho>';
 
         $envelope = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
         <soap:Body><ns2:GerarNfseRequest xmlns:ns2="http://nfse.indaiatuba.sp.gov.br">
@@ -56,17 +56,19 @@ class Abrasf
 
         $msgSize = strlen($envelope);
 
-        $parameters = [
-            "Content-Type: text/xml; charset=utf-8",
-            "Content-length: $msgSize",
+        $headers = array(
+            "Content-type: text/xml;charset=\"utf-8\"",
+            "Accept: text/xml",
+            "Cache-Control: no-cache",
+            "Pragma: no-cache",
             "SOAPAction: http://nfse.indaiatuba.sp.gov.br/GerarNfse",
-        ];
+        );
 
-        $SoapCurl->send('GerarNfse',
+        $a = $SoapCurl->send('GerarNfse',
             'https://deiss.indaiatuba.sp.gov.br/homologacao/nfse?wsdl',
             'http://nfse.indaiatuba.sp.gov.br/GerarNfse',
             $envelope,
-            $parameters);
+            $headers);
     }
 
     public function send1($xml)
@@ -94,7 +96,7 @@ class Abrasf
     public function send3()
     {
 
-        $XmlAssinado = htmlentities(file_get_contents(storage_path() . '/teste.xml'));
+        $XmlAssinado = htmlentities(file_get_contents(storage_path() . '/teste2.xml'));
         $cabecalho = htmlentities('<cabecalho versao="2.01" xmlns="http://www.abrasf.org.br/nfse.xsd"><versaoDados>2.01</versaoDados></cabecalho>');
 
         $envelope =
@@ -122,7 +124,10 @@ class Abrasf
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 300);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $envelope);
+        curl_setopt($ch, CURLOPT_SSLVERSION,3);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYSTATUS,0);
+        curl_setopt($ch, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_3 );        curl_setopt($ch, CURLOPT_POSTFIELDS, $envelope);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 // converting
@@ -137,5 +142,34 @@ class Abrasf
         echo "<pre>$response</pre>";
 
 
+    }
+
+    public function send4($xml){
+        $params = array(
+            'local_cert' => storage_path() . '/certificate.pem',
+            'passphrase' => 'nfe1234',
+            'trace' => 1,
+            'connection_timeout' => 60,
+            'encoding' => 'utf-8',
+            'keep_alive' => false
+        );
+
+        ini_set('default_socket_timeout', 60);
+        ini_set("soap.wsdl_cache_enabled", 0);
+
+        $this->soap = new \SoapClient('https://deiss.indaiatuba.sp.gov.br/homologacao/nfse?wsdl', $params);
+
+        $cabecalho = '<cabecalho versao="2.01" xmlns="http://www.abrasf.org.br/nfse.xsd" ><versaoDados>2.01</versaoDados></cabecalho>';
+
+        $cabecalho = htmlentities('<cabecalho versao="2.01" xmlns="http://www.abrasf.org.br/nfse.xsd"><versaoDados>2.01</versaoDados></cabecalho>');
+
+        $params =
+            [
+                'VersaoSchema' => 1,
+                'nfseCabecMsg' => $cabecalho,
+                 'nfseDadosMsg' => ''
+            ];
+
+            $response = $this->soap->GerarNfse($params);
     }
 }

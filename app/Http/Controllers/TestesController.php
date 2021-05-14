@@ -15,7 +15,7 @@ class TestesController extends ApiController
         try {
 
 
-            $xml = file_get_contents(storage_path().'/teste2.xml');
+            $xml = file_get_contents(storage_path().'/teste.xml');
 
             $canonical = [true,false,null,null];
             $algorithm = OPENSSL_ALGO_SHA1;
@@ -24,13 +24,15 @@ class TestesController extends ApiController
 
             $certificate  = Certificate::readPfx($pfx, 'nfe1234');
 
-            $signed = Signer::sign($certificate, $xml, 'GerarNfseEnvio', 'Rps', $algorithm, $canonical, 'Rps');
+            $signed = Signer::sign($certificate, $xml, 'Rps', 'Rps', $algorithm, $canonical, 'Rps');
 
-            file_put_contents(storage_path().'/teste2.xml', $signed);
+            file_put_contents(storage_path().'/teste.xml', $signed);
 
             $Abrasf = new Abrasf();
 
-            $Abrasf->send($certificate);
+            $xml = file_get_contents(storage_path().'/teste.xml');
+
+            $Abrasf->send4($xml);
 
         }catch (\Exception $e){
 
@@ -42,7 +44,7 @@ class TestesController extends ApiController
 
 
 //            soap puro ainda em testes
-            
+
 //            para testes com o Soap, utilize $soapClient->GerarNfseEnvio
 
             $urlWsdl = 'https://deiss.indaiatuba.sp.gov.br/homologacao/nfse?wsdl';
@@ -57,7 +59,7 @@ class TestesController extends ApiController
 
            // if(!$response)
            //  throw new \Exception();
-               
+
         }catch (\Exception $e){
             echo $e->getMessage();
         }

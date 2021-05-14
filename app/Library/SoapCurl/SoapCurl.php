@@ -25,6 +25,7 @@ class SoapCurl extends SoapBase
         $this->requestBody = $envelope;
 
         try {
+            $envelope = html_entity_decode($envelope);
             $oCurl = curl_init();
             $this->setCurlProxy($oCurl);
             curl_setopt($oCurl, CURLOPT_URL, $url);
@@ -46,8 +47,9 @@ class SoapCurl extends SoapBase
             curl_setopt($oCurl, CURLOPT_SSLCERT, realpath(storage_path() . '/certificate.pem'));
             curl_setopt($oCurl, CURLOPT_SSLKEY, realpath(storage_path() . '/certificate.pem'));
 //            curl_setopt($oCurl, CURLOPT_KEYPASSWD, 'nfe1234');
-            curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($oCurl, CURLOPT_POST, true);
+            curl_setopt($oCurl, CURLOPT_VERBOSE, 0);
             curl_setopt($oCurl, CURLOPT_POSTFIELDS, $envelope);
             curl_setopt($oCurl, CURLOPT_HTTPHEADER, $parameters);
             $response = curl_exec($oCurl);

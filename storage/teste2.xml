@@ -34,8 +34,9 @@
                 <MunicipioIncidencia>3520509</MunicipioIncidencia>
             </Servico>
             <Prestador>
+                <Cnpj>44733608000109</Cnpj>
                 <CpfCnpj>
-                    <Cnpj>06014576000194</Cnpj>
+                    <Cnpj>44733608000109</Cnpj>
                 </CpfCnpj>
                 <InscricaoMunicipal>1432261</InscricaoMunicipal>
             </Prestador>
